@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\Status;
 use App\Models\Todo;
 use App\Models\TodoList;
 use App\Http\Requests\StoreTodoRequest;
@@ -73,6 +74,19 @@ class TodoController extends Controller
     {
         $todo->update($request->all());
         $todo->setHidden(['todoList']);
+
+        $status = Status::COMPLETE;
+        if ($request->get('status') != null) {
+            $status = match (strtolower($request->get('status'))) {
+                'incomplete' => Status::INCOMPLETE,
+                'complete' => Status::COMPLETE,
+                default => Status::COMPLETE,        //could do something like unkown
+            };
+        }
+
+        $todoList->setAttribute('status', $status);
+        $todoList->save();
+
         return $todo;
     }
 

@@ -46,7 +46,10 @@ class AuthController extends Controller
             ]
         );
 
+        $user->assignRole('user');
+
         $token = Auth::login($user);
+
         return response()->json(
             [
                 'user' => $user,
@@ -54,7 +57,7 @@ class AuthController extends Controller
                     'token' => $token,
                     'type' => 'bearer',
                 ]
-            ]
+            ],201
         );
     }
 

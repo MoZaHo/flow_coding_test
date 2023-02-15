@@ -30,4 +30,5 @@ class TodoList extends Model
     {
         return $this->hasMany(Todo::class, 'list_id', 'id');
     }
+
 }
