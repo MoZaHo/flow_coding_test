@@ -42,3 +42,11 @@ Please update the Postman Environment to match any variable criteria (eg, `baseU
 Please remember to allow the Github users `richardfrankza` and `pixelbaste` to have access to this repo in order for us to review.
 
 Good luck!
+
+### Notes
+Nothing fancy to get it up and running.
+Database schema : laravel
+user = root
+password = <blank>
+
+running it locally, so postman base url was http://127.0.0.1:8000/
