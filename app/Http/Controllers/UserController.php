@@ -52,4 +52,9 @@ class UserController extends Controller
         $user->delete();
         return response()->json(['message' => 'success'], 200);
     }
+
+    public function test(User $user) {
+        return response()->json(['message' => 'success'], 200);
+    }
+
 }

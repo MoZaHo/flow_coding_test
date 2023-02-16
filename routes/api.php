@@ -17,7 +17,7 @@ use App\Http\Controllers\TodoListController;
 |
 */
 
-Route::controller(AuthController::class)->prefix('auth')->group(
+Route::controller(AuthController::class)->prefix('auth')->middleware(['auth.json'])->group(
     function () {
         Route::post('/login', 'login');
         Route::post('/register', 'register');
@@ -26,7 +26,7 @@ Route::controller(AuthController::class)->prefix('auth')->group(
     }
 );
 
-Route::controller(TodoListController::class)->prefix('lists')->group(
+Route::controller(TodoListController::class)->prefix('lists')->middleware(['auth','auth.json'])->group(
     function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
@@ -37,7 +37,7 @@ Route::controller(TodoListController::class)->prefix('lists')->group(
     }
 );
 
-Route::controller(TodoController::class)->prefix('lists/{todo_list}/todos')->group(
+Route::controller(TodoController::class)->prefix('lists/{todo_list}/todos')->middleware(['auth','auth.json'])->group(
     function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
@@ -49,8 +49,9 @@ Route::controller(TodoController::class)->prefix('lists/{todo_list}/todos')->gro
     }
 );
 
-Route::controller(UserController::class)->prefix('users')->middleware('auth')->group(
+Route::controller(UserController::class)->prefix('users')->middleware(['auth','auth.json'])->group(
     function () {
         Route::get('/', 'index');
+        Route::get('/test', 'test');
     }
 );

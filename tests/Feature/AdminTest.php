@@ -121,7 +121,7 @@ class AdminTest extends TestCase
 
         $response->assertStatus(200);
 
-        foreach ($response->original['data'] as $todolist) {
+        foreach ($response->original as $todolist) {
             $this->assertNotEquals($todolist->user_id, $admin->id);
         }
 

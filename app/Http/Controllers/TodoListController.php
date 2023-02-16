@@ -35,7 +35,7 @@ class TodoListController extends Controller
 
         $todoLists = $query->paginate();
 
-        return response()->json(['data' => $todoLists, 'total' => $todoLists->total()]);
+        return response()->json($todoLists);
     }
 
     /**
@@ -62,6 +62,7 @@ class TodoListController extends Controller
      */
     public function show(TodoList $todoList)
     {
+        $this->authorize('view', $todoList);
         return $todoList;
     }
 

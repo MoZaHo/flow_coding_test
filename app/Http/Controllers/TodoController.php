@@ -40,10 +40,12 @@ class TodoController extends Controller
      */
     public function store(TodoList $todoList, StoreTodoRequest $request)
     {
+
         $this->authorize('add_todo', $todoList);
 
         $todo = new Todo($request->all());
         $todo->list_id = $todoList->id;
+
         $todo->save();
 
         $todo->setHidden(['todoList']);

@@ -232,7 +232,7 @@ class TodoListTest extends TestCase
         );
         $response->assertStatus(200);
 
-        foreach ($response->original['data'] as $item) {
+        foreach ($response->original as $item) {
             $this->assertEquals($item->id, $result->id);
         }
 
@@ -247,7 +247,7 @@ class TodoListTest extends TestCase
         );
         $response->assertStatus(200);
 
-        foreach ($response->original['data'] as $item) {
+        foreach ($response->original as $item) {
             $this->assertEquals($item->id, $result->id, 'Test search works on title AND description');
         }
 
