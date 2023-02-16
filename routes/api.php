@@ -49,11 +49,8 @@ Route::controller(TodoController::class)->prefix('lists/{todo_list}/todos')->gro
     }
 );
 
-//Route::middleware('auth.json')->group(function () {
-    Route::controller(UserController::class)->prefix('users')->group(
-        function () {
-            Route::get('/', 'index');
-        }
-    );
-
-//});
+Route::controller(UserController::class)->prefix('users')->middleware('auth')->group(
+    function () {
+        Route::get('/', 'index');
+    }
+);
